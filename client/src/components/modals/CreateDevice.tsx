@@ -34,6 +34,11 @@ const CreateDevice: React.FC<сreateListProps> = ({ show, onHide }) => {
   const setSelectedType = (type: TypeBrand) => {
     dispatch(selectedTypes(type));
   };
+  const remuveAll = () => {
+    setName("");
+    setPrice(0);
+    setInfo([]);
+  };
   const selectFile = (e: any) => {
     setFile(e.target.files[0]);
   };
@@ -61,6 +66,8 @@ const CreateDevice: React.FC<сreateListProps> = ({ show, onHide }) => {
     formData.append("typeId", selectedType.id as any);
     formData.append("info", JSON.stringify(info));
     createDevice(formData);
+    onHide();
+    remuveAll();
   };
   return (
     <Modal

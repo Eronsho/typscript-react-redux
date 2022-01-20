@@ -12,11 +12,11 @@ import BrandBar from "../components/BrandBar";
 import DeviceList from "../components/DeviseList";
 import TypeBar from "../components/TypeBar";
 import Pages from "../components/Pages";
-import { fetchDevice } from "../store/action-creators/device";
+import { fetchDeviceRequest } from "../store/action-creators/device";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useDispatch } from "react-redux";
-import { fetchType } from "../store/action-creators/type";
-import { fetcBrand } from "../store/action-creators/brand";
+import { fetchTypesRequest } from "../store/action-creators/type";
+import { fetchBrandsRequest } from "../store/action-creators/brand";
 const Shop: React.FC = () => {
   const dispatch = useDispatch();
   const { device, loading, count, page } = useTypeSelector(
@@ -29,12 +29,22 @@ const Shop: React.FC = () => {
   const { user } = useTypeSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(fetchDevice(selectedType.id, selectedBrand.id, page, 4));
-    dispatch(fetchType());
-    dispatch(fetcBrand());
+    dispatch(
+      fetchDeviceRequest({ typeId: null, brandId: null, page: null, limit: 4 })
+    );
+    dispatch(fetchBrandsRequest());
+    dispatch(fetchTypesRequest());
+    console.log(brand);
   }, []);
   useEffect(() => {
-    dispatch(fetchDevice(selectedType.id, selectedBrand.id, page, 4));
+    dispatch(
+      fetchDeviceRequest({
+        typeId: selectedType.id,
+        brandId: selectedBrand.id,
+        page: page,
+        limit: 4,
+      })
+    );
   }, [selectedBrand, selectedType, page]);
   return (
     <Container>

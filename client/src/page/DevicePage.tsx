@@ -19,7 +19,6 @@ import { Device } from "../types/device";
 import { StarRating } from "../components/StarRating";
 import { useDispatch } from "react-redux";
 import { addDeviceBasket } from "../store/action-creators/basket";
-import { fetchOneDevice } from "../store/action-creators/oneDevice";
 import { BASKET_ROUTE } from "../utils/consts";
 type QuizParams = {
   id: string;

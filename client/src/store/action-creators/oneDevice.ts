@@ -2,23 +2,19 @@ import {
   DeviceActionTypes,
   DeviceAction,
   FetchDevice,
+  Device,
 } from "./../../types/device";
 import { Dispatch } from "react";
 import { $host } from "../../http";
-export const fetchOneDevice = (id: number) => {
-  return async (dispatch: Dispatch<DeviceAction>) => {
-    try {
-      dispatch({ type: DeviceActionTypes.FETCH_DEVIECE });
-      const { data } = await $host.get("api/device/" + id);
-      dispatch({
-        type: DeviceActionTypes.FETCH_ONE_DEVIECE_SUCCESSS,
-        payload: data,
-      });
-    } catch (e) {
-      dispatch({
-        type: DeviceActionTypes.FETCH_DEVIECE_ERROR,
-        payload: "Произошла ошибка при загрузке пользователей",
-      });
-    }
-  };
-};
+export const fetchOneDeviceSuccess = (payload: Device[]) => ({
+  type: DeviceActionTypes.FETCH_ONE_DEVIECE_SUCCESSS,
+  payload,
+});
+export const fetchOneDeviceRequest = (payload: number) => ({
+  type: DeviceActionTypes.FETCH_ONE_DEVIECE,
+  payload,
+});
+export const fetchOneDeviceError = (payload: string) => ({
+  type: DeviceActionTypes.FETCH_DEVIECE_ERROR,
+  payload,
+});

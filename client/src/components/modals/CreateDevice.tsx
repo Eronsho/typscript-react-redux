@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { fetchDevice } from "../../store/action-creators/device";
 import { useTypeSelector } from "../../hooks/useTypeSelector";
 import { useDispatch } from "react-redux";
-import { fetchType, selectedTypes } from "../../store/action-creators/type";
-import { fetcBrand, selectedBrands } from "../../store/action-creators/brand";
+import { selectedTypes } from "../../store/action-creators/type";
+import { selectedBrands } from "../../store/action-creators/brand";
 import { Modal, Dropdown, Button, Form, Col, Row } from "react-bootstrap";
 import { Info, TypeBrand } from "../../types/device";
 import { createDevice } from "../../http/deviceApi";

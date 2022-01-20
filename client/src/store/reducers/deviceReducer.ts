@@ -1,7 +1,4 @@
 import {
-  BrandActhion,
-  BrandActionTypes,
-  BrandState,
   Device,
   OneDeviceState,
   SelectedBrandState,
@@ -12,9 +9,9 @@ import {
   DeviceAction,
   DeviceActionTypes,
   DeviceState,
-  TypeActhion,
-  TypeActionTypes,
 } from "../../types/device";
+import { BrandActhion, BrandActionTypes, BrandState } from "../../types/brand";
+import { TypeActhion, TypeActionTypes } from "../../types/types";
 
 const deviceState: DeviceState = {
   device: [],
@@ -66,7 +63,7 @@ export const deviceReducer = (
       return {
         loading: true,
         error: null,
-        device: [],
+        device: state.device,
         count: state.count,
         page: state.page,
       };
@@ -74,7 +71,7 @@ export const deviceReducer = (
       return {
         loading: false,
         error: null,
-        device: action.payload,
+        device: [...action.payload],
         count: action.payloadCount,
         page: state.page,
       };
@@ -82,7 +79,7 @@ export const deviceReducer = (
       return {
         loading: false,
         error: action.payload,
-        device: [],
+        device: state.device,
         count: state.count,
         page: state.page,
       };
@@ -127,19 +124,19 @@ export const typeReducer = (
       return {
         loading: true,
         error: null,
-        type: [],
+        type: state.type,
       };
     case TypeActionTypes.FETCH_TYPES_SUCCESSS:
       return {
         loading: false,
         error: null,
-        type: action.payload,
+        type: [...action.payload],
       };
     case TypeActionTypes.FETCH_TYPES_ERROR:
       return {
         loading: false,
         error: action.payload,
-        type: [],
+        type: state.type,
       };
     default:
       return state;
@@ -154,7 +151,6 @@ export const selectedTypeReducer = (
       return {
         loading: false,
         error: null,
-
         selectedType: action.payload,
       };
     case TypeActionTypes.SELECTION_TYPE_ERROR:
@@ -175,21 +171,24 @@ export const brandReducer = (
   switch (action.type) {
     case BrandActionTypes.FETCH_BRANDS:
       return {
+        ...state,
         loading: true,
         error: null,
-        brand: [],
+        brand: state.brand,
       };
     case BrandActionTypes.FETCH_BRANDS_SUCCESS:
       return {
+        ...state,
         loading: false,
         error: null,
         brand: action.payload,
       };
     case BrandActionTypes.FETCH_BRANDS_ERROR:
       return {
+        ...state,
         loading: false,
         error: action.payload,
-        brand: [],
+        brand: state.brand,
       };
 
     default:

@@ -2,9 +2,10 @@ import React, { useContext, useState } from "react";
 import { Card, Button, Container, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useLocation, NavLink, useHistory } from "react-router-dom";
-import { login, registration } from "../http/userApi";
-import { addLoginUseer, addUseer } from "../store/action-creators/user";
-import { User } from "../types/user";
+import {
+  addLoginUseerRequest,
+  addUseerRequest,
+} from "../store/action-creators/user";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/consts";
 const Auth = () => {
   const location = useLocation();
@@ -17,10 +18,10 @@ const Auth = () => {
     try {
       let data;
       if (isLogin) {
-        dispatch(addLoginUseer(email, password));
+        dispatch(addLoginUseerRequest({ email, password }));
         console.log(data);
       } else {
-        dispatch(addUseer(email, password));
+        dispatch(addUseerRequest({ email, password }));
       }
       history.push(SHOP_ROUTE);
     } catch (e) {

@@ -20,6 +20,7 @@ export const basketReducer = (
         device: [...state.device],
       };
     case BasketActionTypes.FETCH_DEVICE_BASKET_SUCCESSS:
+      debugger;
       return {
         loading: false,
         error: null,
@@ -31,7 +32,7 @@ export const basketReducer = (
         error: action.payload,
         device: state.device,
       };
-    case BasketActionTypes.DELETE_DEVICE_BASKET:
+    case BasketActionTypes.DELETE_DEVICE_BASKET_SUCCESSS:
       return {
         loading: false,
         error: null,

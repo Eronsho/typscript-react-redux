@@ -10,13 +10,27 @@ export interface User {
   id: number;
   role: string;
 }
+export interface UserPayload {
+  email: string;
+  password: string;
+}
 export enum UserActionTypes {
+  ADD_USER = "ADD_USER",
+  LOG_OUT_USER = "LOG_OUT_USER",
   FETCH_USER = "FETCH_USER",
   FETCH_USER_SUCCESSS = "FETCH_USER_SUCCESSS",
   FETCH_USER_ERROR = "FETCH_USER_ERROR",
 }
-interface FetchUserActhiom {
+interface addUserAction {
+  type: UserActionTypes.ADD_USER;
+  payload: UserPayload;
+}
+interface logOutUser {
+  type: UserActionTypes.LOG_OUT_USER;
+}
+interface FetchUserActhion {
   type: UserActionTypes.FETCH_USER;
+  payload: UserPayload;
 }
 interface fetchUserSuccessAction {
   type: UserActionTypes.FETCH_USER_SUCCESSS;
@@ -27,6 +41,8 @@ interface FetchUserErrorAction {
   payload: string;
 }
 export type UserAction =
-  | FetchUserActhiom
+  | FetchUserActhion
   | fetchUserSuccessAction
-  | FetchUserErrorAction;
+  | FetchUserErrorAction
+  | addUserAction
+  | logOutUser;

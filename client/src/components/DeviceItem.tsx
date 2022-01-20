@@ -8,7 +8,7 @@ import { DEVICE_ROUTE } from "../utils/consts";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteDeviceBasket } from "../store/action-creators/basket";
-import { fetchOneDevice } from "../store/action-creators/oneDevice";
+import { fetchOneDeviceRequest } from "../store/action-creators/oneDevice";
 
 type DeviceListProps = {
   devices: Device;
@@ -23,7 +23,7 @@ const DeciceItem: React.FC<DeviceListProps> = ({ devices }) => {
   console.log(history.location.pathname);
   const dispatch = useDispatch();
   const addOneDevice = (id: number) => {
-    dispatch(fetchOneDevice(id));
+    dispatch(fetchOneDeviceRequest(id));
     history.push(DEVICE_ROUTE + "/" + id);
   };
   return (

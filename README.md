@@ -8,14 +8,14 @@
 
 ---
 Основной стек технологии
-    axios
-    jwt-decode
-    react
-    react-bootstrap
-    react-dom
-    react-icons
-    react-router-dom
-    redux-saga
+    axios,
+    jwt-decode,
+    react,
+    react-bootstrap,
+    react-dom,
+    react-icons,
+    react-router-dom,
+    redux-saga,
     typescript
 
 ---
